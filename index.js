@@ -28,7 +28,7 @@ app.use(fileUpload({
 }));
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin:"*",
   credentials: true,// cookies ko bhi le paaye 
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
