@@ -76,7 +76,7 @@ cloudinary.config({
 
 
 mongoose
-  .connect(db_url)
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Database Connected Successfully");
   
