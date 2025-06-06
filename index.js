@@ -27,12 +27,32 @@ app.use(fileUpload({
   tempFileDir : '/tmp/'
 }));
 
+
+
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
+
+
 app.use(cors({
-  origin:"*",
-  credentials: true,// cookies ko bhi le paaye 
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
-}))
+}));
+
+
+
+
+
+
+
+
 
 
 app.use("/api",Router);  // course router h naam glt rakha hai 
