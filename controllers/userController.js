@@ -14,8 +14,9 @@ const { JWT_PASSWORD } = require("../config");
 
 const signUp=async(req,res)=>{
   try {
+    console.log("Request come in signup");
     const {firstName,lastName,email,password}=req.body;
-    console.log("Request aa gyi hai::::::");
+    
 
     const UUserSchema = z.object({//ye kch condition jo honi hi chahiye
       firstName: z
@@ -104,7 +105,11 @@ const logout=async(req,res)=>{
     if(!req.cookies.jwt){
       return res.status(401).json({errors:"kindly LOgin first"})
     }
-    res.clearCookie("jwt");
+    // res.clearCookie("jwt");
+    res.clearCookie("jwt", {
+  sameSite: "None",
+  secure: true,
+});
     res.status(200).json({message:"Logged out Successfully.."})
   } catch (error) {
     // res.json({message:error.message})

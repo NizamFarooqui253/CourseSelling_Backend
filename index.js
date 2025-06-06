@@ -73,6 +73,7 @@ cloudinary.config({
 });
 
 
+console.log(process.env.MONGO_URL);
 
 
 mongoose
