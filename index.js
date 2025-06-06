@@ -79,7 +79,7 @@ mongoose
   .connect(db_url)
   .then(() => {
     console.log("Database Connected Successfully");
-    const port = 8000;
+  
     app.listen(port, () => {
       console.log(`Server is running at http://localhost:${port}`);
     });
